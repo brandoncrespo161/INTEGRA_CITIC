@@ -314,59 +314,81 @@
     /* ==========================================================================
        5. LOGOTIPO OFICIAL (logo.png) ADAPTATIVO CLARO/OSCURO
        ========================================================================== */
+    /* ==========================================================================
+       5. LOGOTIPO OFICIAL (logo.png) GRANDE, NÍTIDO Y SIN CAJA BLANCA
+       ========================================================================== */
     /* Encabezado de diapositivas de contenido (Slides 02–14) */
     .logo-header-wrap {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border-radius: 10px;
-      transition: background var(--transition-fast), padding var(--transition-fast), box-shadow var(--transition-fast);
+      background: transparent;
+      padding: 0;
     }
 
     .logo-header-wrap img {
-      height: clamp(28px, 3.6vh, 40px);
+      height: clamp(58px, 7.8vh, 86px);
       width: auto;
-      max-width: 170px;
+      max-width: 320px;
+      margin: -10px 0; /* Compensa el margen transparente del PNG sin engordar la barra */
       object-fit: contain;
       display: block;
     }
 
-    /* En modo auditorio oscuro, envuelve logo.png en píldora blanca elegante */
+    /* En modo auditorio oscuro (tecla D): foco de luz suave sin bordes duros */
     body.theme-dark .logo-header-wrap {
-      background: #FFFFFF;
-      padding: 0.26rem 0.65rem;
-      border-radius: 10px;
-      box-shadow: 0 6px 20px rgba(0, 194, 209, 0.28);
+      background: radial-gradient(
+        ellipse 74% 62% at center,
+        rgba(255, 255, 255, 0.94) 0%,
+        rgba(224, 247, 252, 0.62) 44%,
+        rgba(0, 194, 209, 0) 76%
+      );
+      padding: 0.15rem 1.1rem;
+      box-shadow: none;
     }
 
-    /* Portada (Slide 01), Cierre (Slide 15) y Blackout */
+    /* Portada (Slide 01) y Blackout: gran tamaño + halo central luminoso sin recuadro */
     .hero-logo-card {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: #FFFFFF;
-      padding: clamp(0.7rem, 1.6vw, 1.1rem) clamp(1.25rem, 2.8vw, 2rem);
-      border-radius: var(--radius-lg);
-      box-shadow: 0 12px 34px rgba(0, 194, 209, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.65);
-      max-width: min(82vw, 360px);
+      width: min(92vw, 660px);
+      padding: clamp(0.4rem, 1vh, 0.8rem) clamp(1.5rem, 4vw, 3.2rem);
+      margin: -1.4rem 0; /* Elimina el aire vacío arriba y abajo del PNG */
+      background: radial-gradient(
+        ellipse 66% 56% at center,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(224, 247, 252, 0.72) 35%,
+        rgba(0, 194, 209, 0.16) 58%,
+        rgba(0, 194, 209, 0) 76%
+      );
+      border-radius: 50%;
+      box-shadow: none;
     }
 
     .hero-logo-card img {
       width: 100%;
-      max-height: clamp(68px, 13vh, 118px);
+      max-height: clamp(190px, 34vh, 300px);
       height: auto;
       object-fit: contain;
       display: block;
+      filter: drop-shadow(0 6px 16px rgba(4, 42, 84, 0.22));
     }
 
+    /* Cierre (Slide 15) */
     .hero-logo-card--compact {
-      max-width: min(70vw, 250px);
-      padding: 0.55rem 1.25rem;
-      border-radius: var(--radius-md);
+      width: min(82vw, 430px);
+      margin: -0.9rem 0;
+      padding: 0.35rem 1.6rem;
     }
 
     .hero-logo-card--compact img {
-      max-height: clamp(50px, 8.8vh, 78px);
+      max-height: clamp(115px, 20vh, 180px);
+    }
+
+    /* Oculta el h1 vacío de la portada para que no deje espacio muerto */
+    .hero-title:empty {
+      display: none;
     }
 
     .logo-fallback {
@@ -1985,7 +2007,7 @@
       }
 
       .logo-header-wrap img {
-        height: 25px;
+        height: 38px;
       }
 
       .slide__meta-footer {
@@ -2084,6 +2106,119 @@
         width: var(--meter-print-width, 100%) !important;
       }
     }
+/* ==========================================================================
+       MEJORA DE CALIDAD, CONTRASTE Y PROTAGONISMO DEL LOGO
+       ========================================================================== */
+    /* 1. Portada (Slide 01): fondo luminoso premium para que logo.png brille al 100% */
+    .slide[data-slide="1"] {
+      background:
+        radial-gradient(circle at 50% 34%, #FFFFFF 0%, #EEF7FC 52%, #D7ECF6 100%);
+      color: var(--navy-deep);
+    }
+
+    .slide[data-slide="1"] .slide__header {
+      border-bottom-color: rgba(4, 42, 84, 0.12);
+    }
+
+    .slide[data-slide="1"] .category-badge {
+      color: var(--navy-deep);
+      background: rgba(0, 139, 155, 0.12);
+      border-color: rgba(0, 139, 155, 0.32);
+    }
+
+    .slide[data-slide="1"] .slide-number-pill {
+      color: var(--navy-deep);
+      background: #FFFFFF;
+      border-color: rgba(4, 42, 84, 0.15);
+    }
+
+    /* Logo protagonista en portada: grande, nítido, sin caja ni halo opaco */
+    .slide[data-slide="1"] .hero-logo-card {
+      background: none;
+      box-shadow: none;
+      border: none;
+      padding: 0;
+      margin: -1.6rem 0 -1.2rem;
+      width: min(94vw, 680px);
+      max-width: none;
+      border-radius: 0;
+    }
+
+    .slide[data-slide="1"] .hero-logo-card img {
+      width: 100%;
+      max-height: clamp(210px, 38vh, 340px);
+      filter: contrast(1.08) saturate(1.22) drop-shadow(0 12px 22px rgba(4, 42, 84, 0.14));
+    }
+
+    .hero-title:empty {
+      display: none;
+    }
+
+    .slide[data-slide="1"] .hero-motto {
+      color: var(--navy-deep);
+    }
+
+    .slide[data-slide="1"] .hero-motto span {
+      color: var(--teal);
+    }
+
+    .slide[data-slide="1"] .hero-subclaim {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .slide[data-slide="1"] .hero-plan-badge {
+      background: rgba(4, 42, 84, 0.07);
+      border-color: rgba(0, 139, 155, 0.38);
+      color: var(--navy-deep);
+    }
+
+    .slide[data-slide="1"] .btn-cta--ghost {
+      background: #FFFFFF;
+      color: var(--navy-deep);
+      border-color: rgba(4, 42, 84, 0.24);
+      box-shadow: 0 4px 14px rgba(4, 42, 84, 0.08);
+    }
+
+    .slide[data-slide="1"] .btn-cta--ghost:hover {
+      background: var(--navy-deep);
+      color: #FFFFFF;
+    }
+
+    .slide[data-slide="1"] .slide__meta-footer {
+      color: var(--text-muted);
+    }
+
+    /* 2. Logo más grande y vibrante en diapositivas 02–14 */
+    .logo-header-wrap {
+      background: transparent;
+      padding: 0;
+    }
+
+    .logo-header-wrap img {
+      height: clamp(64px, 8.5vh, 94px);
+      max-width: 340px;
+      margin: -14px 0;
+      filter: contrast(1.06) saturate(1.18);
+    }
+
+    @media (max-width: 540px) {
+      .logo-header-wrap img {
+        height: 46px;
+        margin: -6px 0;
+      }
+    }
+	/* Modo oscuro: sin neblina ni recuadro, logo en blanco puro nítido */
+    body.theme-dark .logo-header-wrap {
+      background: transparent !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+    }
+
+    body.theme-dark .logo-header-wrap img {
+      filter: brightness(0) invert(1) !important;
+      opacity: 0.95;
+    }
   </style>
 </head>
 <body>
@@ -2137,7 +2272,7 @@
             <span class="logo-fallback" style="display:none;">INTEGRA CITIC</span>
           </div>
 
-          <h1 class="hero-title anim-item anim-d3">INTEGRA CITIC</h1>
+          <h1 class="hero-title anim-item anim-d3"></h1>
 
           <p class="hero-motto anim-item anim-d4">
             Unidos para integrar. <span>Comprometidos para transformar.</span>
